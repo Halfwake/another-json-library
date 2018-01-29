@@ -26,7 +26,3 @@ struct token {
  * @return A list of the tokens inside the text.
  */
 struct token * tokenize(size_t size, char * buffer);
-
-struct token * new_token(enum TOKEN_TYPE type, char * bytes, size_t size);
-
-struct token * push_token(struct token * stack, struct token * new);

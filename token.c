@@ -1,5 +1,19 @@
 #include "token.h"
 
+struct token * new_token(enum TOKEN_TYPE type, char * bytes, size_t size) {
+  struct token * token = malloc(sizeof(struct token));
+  token->type = type;
+  token->bytes = bytes;
+  token->size = size;
+  token->next = NULL;
+  return token;
+}
+
+struct token * push_token(struct token * stack, struct token * new) {
+  stack->next = new;
+  return new;
+}
+
 struct token * tokenize(size_t size, char * buffer) {
   struct token * head = NULL;
   size_t index = 0;
@@ -47,18 +61,4 @@ struct token * tokenize(size_t size, char * buffer) {
     }
   }
   return head;
-}
-
-struct token * new_token(enum TOKEN_TYPE type, char * bytes, size_t size) {
-  struct token * token = malloc(sizeof(struct token));
-  token->type = type;
-  token->bytes = bytes;
-  token->size = size;
-  token->next = NULL;
-  return token;
-}
-
-struct token * push_token(struct token * stack, struct token * new) {
-  stack->next = new;
-  return new;
 }
