@@ -1,3 +1,6 @@
+#ifndef _TOKEN_H
+#define _TOKEN_H
+
 #include <stdlib.h>
 
 enum TOKEN_TYPE {
@@ -26,3 +29,5 @@ struct token {
  * @return A list of the tokens inside the text.
  */
 struct token * tokenize(size_t size, char * buffer);
+
+#endif _TOKEN_H
