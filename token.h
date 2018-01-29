@@ -16,7 +16,6 @@ enum TOKEN_TYPE {
 struct token {
   enum TOKEN_TYPE type;
   char * bytes;
-  int static_allocation;
   size_t size;
   struct token * next;
 };
