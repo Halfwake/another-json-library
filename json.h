@@ -1,3 +1,6 @@
+#ifndef _JSON_H
+#define _JSON_H
+
 enum JSON_TYPE {
   JSON_ARRAY_TYPE,
   JSON_OBJ_TYPE,
@@ -49,3 +52,5 @@ struct json_any * new_json_num(double value);
 void free_json_num(struct json_num * json);
 
 void free_json_any(struct json_any * json);
+
+#endif
