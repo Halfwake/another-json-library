@@ -1,3 +1,6 @@
+json.o: json.c json.h
+	gcc -c json.c
+
 token.o: token.c token.h
 	gcc -c token.c
 

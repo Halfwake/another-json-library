@@ -1,3 +1,6 @@
+#include "json.h"
+#include <stdlib.h>
+
 void free_json_any(struct json_any * json) {
   void (*destructor_table[JSON_TYPE_SIZE])();
   destructor_table[JSON_ARRAY_TYPE] = free_json_array;
@@ -24,12 +27,12 @@ struct json_any * new_json_array(size_t size, json_any * items) {
 void free_json_array(struct json_array * json) {
   size_t i = 0;
   for (i < json->size; i++) {
-    free_json_any(json.data.items[i]);
+    free_json_any(json->data->items[i]);
   }
   free(json);
 }
 
-struct json_any * new_json_obj(size_t size, json_str * keys, json_any * vals) {
+struct json_any * new_json_obj(size_t size, struct json_str * keys, json_any * vals) {
   struct json_any * any = malloc(sizeof(struct json_any));
   struct json_obj * obj = malloc(sizeof(struct json_obj));
   any->type = JSON_OBJ_TYPE;
@@ -44,12 +47,12 @@ struct json_any * new_json_obj(size_t size, json_str * keys, json_any * vals) {
 
 void free_json_obj(struct json_obj * json) {
   size_t i = 0;
-  for (i < json->size; i++) {
-    free_json_any(json.data.keys[i]);
+  for (;i < json->size; i++) {
+    free_json_any(json->data->keys[i]);
   }
   i = 0;
-  for (i < json->size; i++) {
-    free_json_any(json.data.vals[i]);
+  for (;i < json->size; i++) {
+    free_json_any(json->data->vals[i]);
   }
   free(json);
 }
