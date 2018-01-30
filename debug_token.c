@@ -1,7 +1,7 @@
 #ifndef _TOKEN_DEBUG_H
 #define _TOKENDEBUG_H
 
-#include "token_debug.h"
+#include "debug_token.h"
 
 void print_tokens(struct token * tokens) {
   char * type_info[TOKEN_TYPE_SIZE];
