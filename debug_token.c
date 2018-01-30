@@ -11,6 +11,7 @@ void print_tokens(struct token * tokens) {
   type_info[TOKEN_ARRAY_CLOSE] = "ARRAY_CLOSE";
   type_info[TOKEN_SYMBOL] = "SYMBOL";
   type_info[TOKEN_COMMA] = "COMMA";
+  type_info[TOKEN_OBJ_SPLIT] = "SPLIT";
 
   // Copy the text into a buffer and null terminate it, so we can printf it.
   char * buffer = malloc(tokens->size + 1);
