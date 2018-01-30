@@ -18,6 +18,18 @@ struct token * push_token(struct token * stack, struct token * new) {
   }
 }
 
+struct token * reverse_tokens(struct token * tokens) {
+  struct token * new_head = NULL;
+  struct token * next_token;
+  while (tokens != NULL) {
+    next_token = tokens->next;
+    tokens->next = NULL;
+    new_head = push_token(new_head, tokens);
+    tokens = next_token;
+  }
+  return new_head;
+}
+
 struct token * tokenize(size_t size, char * buffer) {
   struct token * head = NULL;
   size_t index = 0;
@@ -69,5 +81,5 @@ struct token * tokenize(size_t size, char * buffer) {
       //TODO! Die, hard!
     }
   }
-  return head;
+  return reverse_tokens(head);
 }
