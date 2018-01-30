@@ -67,6 +67,23 @@ struct token * tokenize(size_t size, char * buffer) {
       head = push_token(head, new_token(TOKEN_SYMBOL, buffer + str_start, index - str_start));
       index++;
       break;
+    case '0':
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+    case '7':
+    case '8':
+    case '9':
+      str_start = index;
+      while (('0' <= buffer[index]) && (buffer[index] <= '9')) {
+	if (index >= size) break;
+	index++;
+      }
+      head = push_token(head, new_token(TOKEN_NUM, buffer + str_start, index - str_start));
+      break;
     case ':':
       head = push_token(head, new_token(TOKEN_OBJ_SPLIT, ":", 1));
       index++;

@@ -2,15 +2,24 @@
 #include "debug_token.h"
 #include <string.h>
 
+#define EXAMPLE_COUNT 4
+
 int main() {
-  char * example1 = "{\"foo\" : \"bar\"}";
-  size_t length1 = strlen(example1) - 1;
-  printf("Parsing {%s} with length {%d}.\n", example1, length1);
-  struct token * tokens = tokenize(length1, example1);
-  if (tokens == NULL) {
-    printf("Tokenize failed.\n");
-    return -1;
+  char * examples[EXAMPLE_COUNT];
+  examples[0] = "{\"foo\" : \"bar\"}";
+  examples[1] = "\"foobar\"";
+  examples[2] = "[\"a\", \"b\", \"c\"]";
+  examples[3] = "[1, 2, 3]";
+  int i;
+  for (i = 0; i < EXAMPLE_COUNT; i++) {
+    printf("Parsing {%s} with length {%d}.\n", examples[i], strlen(examples[i]) - 1);
+    struct token * tokens = tokenize(strlen(examples[i]) - 1, examples[i]);
+    if (tokens == NULL) {
+      printf("Tokenize failed.\n");
+      return -1;
+    }
+    print_tokens(tokens);
+    printf("\n");
   }
-  print_tokens(tokens);
   return 0;
 }
