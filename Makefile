@@ -4,6 +4,9 @@ json.o: json.c json.h
 token.o: token.c token.h
 	gcc -g -c token.c
 
+parse.o: parse.c parse.h
+	gcc -g -c parse.c
+
 debug_token.o: debug_token.c debug_token.h
 	gcc -g -c debug_token.c
 
