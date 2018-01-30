@@ -34,12 +34,12 @@ struct json_str {
 };
 
 struct json_any {
-  enum json_type type;
+  enum JSON_TYPE type;
   union {
-    struct json_array * data;
-    struct json_obj * data;
-    struct json_num * data;
-    struct json_str * daata;
+    struct json_array * array;
+    struct json_obj * obj;
+    struct json_num * num;
+    struct json_str * str;
   } data;
 };
 
