@@ -77,7 +77,7 @@ struct json_any * new_json_str(size_t size, char * bytes) {
 }
 
 void free_json_str(struct json_str * json) {
-
+  free(json);
 }
 
 struct json_any * new_json_num(double value) {
