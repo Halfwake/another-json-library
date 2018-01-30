@@ -10,8 +10,12 @@ struct token * new_token(enum TOKEN_TYPE type, char * bytes, size_t size) {
 }
 
 struct token * push_token(struct token * stack, struct token * new) {
-  stack->next = new;
-  return new;
+  if (stack == NULL) {
+    return new;
+  } else {
+    stack->next = new;
+    return new;
+  }
 }
 
 struct token * tokenize(size_t size, char * buffer) {
@@ -43,13 +47,18 @@ struct token * tokenize(size_t size, char * buffer) {
     case '"':
       str_start = index + 1;
       if (str_start >= size) return NULL; //TODO! Die, expected " but got end of buffer
+      index++;
       while (buffer[index] != '"') {
-	index++;
 	if (index >= size) return NULL; //TODO! Die, expected " but got end of buffer.
+	index++;
       }      
       head = push_token(head, new_token(TOKEN_COMMA, buffer + str_start, index - 1 - str_start));
       index++;
-      break;    
+      break;
+    case ':':
+      head = push_token(head, new_token(TOKEN_OBJ_SPLIT, ":", 1));
+      index++;
+      break;
     case ' ':
     case '\t':
     case '\n':

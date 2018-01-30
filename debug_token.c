@@ -16,11 +16,15 @@ void print_tokens(struct token * tokens) {
   char * buffer = malloc(tokens->size + 1);
   int i = 0;
   for(;i < tokens->size; i++) buffer[i] = tokens->bytes[i];
-  tokens->bytes[tokens->size] = '\0';
+  buffer[tokens->size] = '\0';
   
   printf("{%s|%s}\n", type_info[tokens->type], buffer);
 
   free(buffer);
+
+  if (tokens->next != NULL) {
+    print_tokens(tokens->next);
+  }
 }
 
 #endif
