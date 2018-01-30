@@ -29,4 +29,4 @@ struct token {
  */
 struct token * tokenize(size_t size, char * buffer);
 
-#endif _TOKEN_H
+#endif
