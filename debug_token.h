@@ -1,4 +1,3 @@
-#include "token_debug.h"
 #include <stdio.h>
 
 void print_tokens(struct token * tokens) {
